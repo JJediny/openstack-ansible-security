@@ -21,15 +21,17 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
+import os
+import sys
+
 
 import openstackdocstheme
-import os
 import pbr.version
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.join(os.path.abspath('.'), '_exts'))
 
 # -- General configuration ------------------------------------------------
 
@@ -39,7 +41,9 @@ import pbr.version
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    'metadata-docs',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
@@ -107,7 +111,8 @@ language = None
 # directories to ignore when looking for source files.
 exclude_patterns = [
     'developer-notes/*.rst',
-    'stig-notes/*.rst'
+    'stig-notes/*.rst',
+    'auto_V-*.rst'
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -143,7 +148,9 @@ html_theme = 'openstackdocs'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-# html_theme_options = {}
+html_theme_options = {
+    "display_toc": False
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = [openstackdocstheme.get_html_theme_path()]
